@@ -5,10 +5,10 @@ const helmet = require('helmet');
 
 
 
-//const userRoutes = require('./routes/user');
-//const articleRoutes = require('./routes/article');
-//const commentRoutes = require('./routes/comment');
-//const likeRoutes = require('./routes/likes');
+const userRoutes = require('./routes/user');
+const articleRoutes = require('./routes/article');
+const commentRoutes = require('./routes/comment');
+const likeRoutes = require('./routes/likes');
 
 
 const app = express();
