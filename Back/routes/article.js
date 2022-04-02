@@ -1,5 +1,9 @@
+const express = require('express');
+const router = express.Router();
+const auth = require('../middlewares/auth');
+const articleCtrl = require('../controllers/article');
 // Création d'un article OK
-router.post('/createArticle/', auth, articleCtrl.createArticle);
+router.post('/', auth, articleCtrl.createArticle);
 
 // Suppression d'un article OK
 router.delete('/article/delete/:articleId', auth, articleCtrl.deleteArticle);

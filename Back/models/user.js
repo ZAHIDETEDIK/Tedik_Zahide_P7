@@ -1,4 +1,4 @@
-const mysql = require ('mysql');
+//const mysql = require ('mysql');
 
 // Constructeur
 const User = function(user) {
@@ -50,7 +50,7 @@ User.findById = (userId) => {
     return new Promise((resolve, reject)=> {
         db.query(
             `SELECT * FROM groupomania.users WHERE id=${userId}`,
-            function (error, result, fields) {
+            function (error, result) {
                 if (error) {
                     reject (error);
                 } else {

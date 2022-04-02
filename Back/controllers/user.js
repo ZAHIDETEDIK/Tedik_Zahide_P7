@@ -82,14 +82,14 @@ exports.updateUser = (req, res) => {
     .catch(error => res.status(404).json({ error }));
 }
 
-// Trouver Un utilisateur par son id 
+// Trouver Un utilisateur par son id OK
 exports.getOneUserById = (req, res) => {
     User.findById(req.params.id)
     .then(user => res.status(200).json(user))
     .catch(error => res.status(404).json({ error }));
 };
 
-// Trouver tous les utilisateurs
+// Trouver tous les utilisateurs (rôle admin) 
 exports.getAllUsers = (req, res) => {
     User.findAll((err, data) => {
         if(err) {
@@ -104,7 +104,7 @@ exports.getAllUsers = (req, res) => {
 };
 
 
-// Suppression d'un utilisateur 
+// Suppression d'un utilisateur (rôle admin) OK
 exports.deleteUser = (req, res) => {
     //let userId = req.params.userId;
     //console.log(userId);
