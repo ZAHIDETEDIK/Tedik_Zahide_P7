@@ -1,10 +1,14 @@
 <template>
     <div class="home">
         <img class="home__title" src="../assets/icon.png" alt="Logo de Groupomania">
-        
-        <div class="home__display">
-            <form @submit.prevent="login" class="home__display__form">
-                <h1 class="home__display__form__title">Se connecter</h1>
+
+            <form @submit.prevent="signup" class="home__display__form">
+                <h1 class="home__display__form__title">S'inscrire</h1>
+
+                <div class="home__display__form__input">
+                    <label for="username" class="home__display__form__input__label">Pseudo</label>
+                    <input type="text" v-model="username" id="username" name="username">
+                </div>
 
                 <div class="home__display__form__input">
                     <label for="mail" class="home__display__form__input__label">Email</label>
@@ -16,62 +20,21 @@
                     <input type="password" v-model="password" id="password" name="password">
                 </div>
 
-                <button class="home__display__form__button">Connexion</button>
+                <button class="home__display__form__button">Inscription</button>
 
-                <p>Vous n'avez pas encore de compte ? <router-link to="/signup" class="home__display__form__signup">S'inscrire</router-link></p>
+                <p>Vous avez déjà un compte ? <router-link to="/" class="home__display__form__login">Se connecter</router-link></p>
             </form>
-        </div> 
-    </div>
+        </div>
+    
 </template>
 
 
 <script>
-    import axios from 'axios'
-    import { Notyf } from 'notyf'
-    export default {
-        name: 'Home',
-        data() {
-            return {
-                email: '',
-                password: '',
-            }
-        },
-        created() {
-            this.notyf = new Notyf({
-                duration: 2000,
-                position: {
-                    x: 'center',
-                    y: 'bottom'
-                }
-            });
-        }, 
-        methods: {
-            // Permet de se connecter et de recharger la page sans que l'utilisateur soit déconnecté
-            login() {
-                axios.post('http://localhost:3000/api/user/login', {
-                    email: this.email,
-                    password: this.password,
-                })
-                .then(response => {
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('userId', response.data.userId);
-                    localStorage.setItem('username', response.data.username);
-                    localStorage.setItem('isAdmin', response.data.isAdmin);
-                    localStorage.setItem('imageProfile', response.data.imageProfile);
-                    this.$router.push('post');
-                })
-                .catch(error => {
-                    const msgerror = error.response.data
-                    this.notyf.error(msgerror.error)
-                })
-            }
-        }
-    }
-</script>
+    </script>
 
 
 <style scoped lang="scss">
-    .home {
+.home {
         &__title {
             @media (max-width: 930px) {
                 max-width: 400px;
@@ -79,20 +42,19 @@
             }
         }
         &__display {
-            margin-top: 3rem;
+            margin-top: 2rem;
             display: flex;
             justify-content: space-around;
             @media (max-width: 930px) {
                 display: flex;
                 flex-direction: column-reverse;
             }
-           
             
+           
             &__form {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                max-width: 840px;
                 width: 40%;
                 border: 3px solid #3f3d56;
                 border-radius: 25px;
@@ -132,7 +94,7 @@
                         cursor: pointer;
                     }
                 }
-                &__signup {
+                &__login {
                     font-weight: bold;
                     text-decoration: none;
                     color: #E60A0A;
