@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const helmet = require('helmet');
-
+const cors=require('cors');
 
 
 const userRoutes = require('./routes/user');
@@ -27,6 +27,7 @@ db.connect(error => {
 });
 module.exports=connect;
 
+app.use(cors());
 app.use(helmet());
 app.use((req, res, next) => {
     res.setHeader(

@@ -1,7 +1,7 @@
 <template>  
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light nav">
-            <img class="nav__logo" src="../assets/icon.png" alt="Logo de Groupomania">
+            <img class="nav__logo" src="../assets/icon-left-font.png" alt="Logo de Groupomania">
 
             <button class="navbar-toggler justify-content-center nav__menuButton" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>

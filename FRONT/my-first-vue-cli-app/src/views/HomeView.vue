@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <img class="home__title" src="../assets/icon.png" alt="Logo de Groupomania">
+        <img class="home__title" src="../assets/icon-above-font.png" alt="Logo de Groupomania">
         
         <div class="home__display">
             <form @submit.prevent="login" class="home__display__form">
@@ -73,9 +73,10 @@
 <style scoped lang="scss">
     .home {
         &__title {
+          width:50%;
             @media (max-width: 930px) {
                 max-width: 400px;
-                width: 90%;
+                width: 50%;
             }
         }
         &__display {
@@ -97,7 +98,7 @@
                 border: 3px solid #3f3d56;
                 border-radius: 25px;
                 margin-top: 2rem;
-                margin-left: -2rem;
+              
                 padding: 1rem;
                 @media (max-width: 930px) {
                     min-width: 250px;
