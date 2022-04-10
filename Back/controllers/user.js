@@ -1,30 +1,29 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mysql = require('mysql');
+require ('dotenv').config
 
 const User = require('../models/user');
 
 // Création d'un nouvel utilisateur 
-exports.register = (req, res) => {
+exports.signup = (req, res) => {
     bcrypt.hash(req.body.password, 5)
     .then(hash => {
         const user = new User({
-            pseudo: req.body.pseudo,
-            email: req.body.email,
-            photo: req.body.photo,
-            password: hash,
-            service: req.body.service,
-            isAdmin: req.body.isAdmin
+            username: req.body.username,
+            email:req.body.email,
+            password:hash,
+            isAdmin: 0
         })
         user.save()// on utilise la méthode save sur notre user pour l'enregistrer dans la bdd
         .then(() => res.status(201).json({ message: 'Utilisateur crée' }))
-        .catch(error => res.status(500).json({ message: 'Cette adresse mail et\\ou ce nom d\'utilisateur semble être déjà utilisé' }));
+        .catch(error => res.status(400).json({ message: 'il y à une erreur' }));
     
     })
-    .catch(error => res.status(500).json( error + ' Salut les gens' ));
+    .catch(error => res.status(500).json( error + ' une erreur est survenue' ));
 };
 
 // Connection d'un utilisateur existant 
+
 exports.login = (req, res) => {
     User.findOne(req.body.email, (err, data) => {
 
@@ -40,7 +39,9 @@ exports.login = (req, res) => {
             const payload = {
                 id: data.id,
                 pseudo: data.pseudo,
-                isAdmin: data.isAdmin
+                isAdmin: data.isAdmin,
+                username:data.username,
+                image:data.image,
             }
             res.status(200).json({
                 ...payload,
@@ -106,9 +107,7 @@ exports.getAllUsers = (req, res) => {
 
 // Suppression d'un utilisateur (rôle admin) OK
 exports.deleteUser = (req, res) => {
-    //let userId = req.params.userId;
-    //console.log(userId);
     User.deleteOne(req.params.userId)
         .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
         .catch(error => res.status(404).json ({ error }));
-};
+}

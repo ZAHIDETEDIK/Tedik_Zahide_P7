@@ -4,9 +4,9 @@
 const User = function(user) {
     this.pseudo = user.pseudo,
     this.email = user.email,
-    this.photo= user.photo,
+    this.image= user.image,
     this.password = user.password,
-    this.service = user.service,   
+  
     this.isAdmin= 0
 };
 
@@ -90,7 +90,7 @@ User.findAll = (result) => {
 User.updateOne = (userId, user) => {
     return new Promise((resolve, reject) => {
         db.query(
-            `UPDATE groupomania.users SET pseudo="${user.pseudo}", email="${user.email}", photo="${user.photo}", service="${user.service}", isAdmin="${user.isAdmin}" WHERE id=${userId}`,
+            `UPDATE groupomania.users SET pseudo="${user.pseudo}", email="${user.email}", image="${user.image}", isAdmin="${user.isAdmin}" WHERE id=${userId}`,
             function (error, result) {
                 if (error) {
                     reject (error);

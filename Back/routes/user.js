@@ -6,7 +6,7 @@ const validatePassword = require('../middlewares/validate-password');
 const userCtrl = require('../controllers/user');
 
 // Création d'un utilisateur OK
-    router.post('/register/', validatePassword, userCtrl.register);
+    router.post('/signup/',auth, validatePassword, userCtrl.signup);
 
 // Connection d'un utilisateur enregistré 
     router.post('/login/', userCtrl.login);
